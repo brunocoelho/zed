@@ -11,22 +11,24 @@ var Zed = {
     VERSION: "0.0.1"
 };
 
-Zed.crop = function(file) {
-    file.addEventListener('change', function(event) {
+Zed.crop = function (file) {
+    "use strict";
 
-    // window.URL polyfill
-    var URL = window.URL || window.webkitURL || window.msURL || window.oURL,
-        file = this.files[0],
-        audioUrl = URL.createObjectURL(file),
-        audio = document.querySelector('audio'),
-        slicedAudio,
-        newAudio,
-        blob,
-        arrayBuffer,
-        reader = new FileReader();
+    file.addEventListener('change', function (event) {
+
+        // window.URL polyfill
+        var link, URL = window.URL || window.webkitURL || window.msURL || window.oURL,
+            file = this.files[0],
+            audioUrl = URL.createObjectURL(file),
+            audio = document.querySelector('audio'),
+            slicedAudio,
+            newAudio,
+            blob,
+            arrayBuffer,
+            reader = new FileReader();
+
         audio.src = audioUrl;
-
-        var link = document.querySelector('a');
+        link = document.querySelector('a');
         link.href = audioUrl;
 
         reader.onloadend = function (evt) {
