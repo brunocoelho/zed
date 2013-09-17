@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>read data as url</title>
+
+  </head>
+  <body id="">
+
+    <p>
+      Escolha o arquivo de audio.
+      <input type="file"></input>
+    </p>
+
+    <audio controls>
+      <p>Your browser does not support the audio element.</p>
+    </audio>
+
+    <audio id="sliced-audio" controls>
+    </audio>
+
+    <a href="">Download</a>
+
+    <script>
+
+      var file = document.querySelector('input');
+    	file.addEventListener('change', function(event) {
+
+        // window.URL polyfill
+    		var URL = window.URL || window.webkitURL || window.msURL || window.oURL,
+            file = this.files[0],
+            audioUrl = URL.createObjectURL(file),
+            audio = document.querySelector('audio'),
+            slicedAudio,
+            newAudio,
+            blob,
+            arrayBuffer,
+            reader = new FileReader();
+
+        audio.src = audioUrl;
+
+        var link = document.querySelector('a');
+        link.href = audioUrl;
+
+        reader.onloadend = function(evt) {
+          if (evt.target.readyState == FileReader.DONE) { // DONE == 2
+            arrayBuffer = evt.target.result;
+            slicedAudio = new Blob([arrayBuffer]);
+            audioUrl = URL.createObjectURL(slicedAudio);
+
+            newAudio = document.getElementById('sliced-audio');
+            newAudio.src = audioUrl;
+          }
+        };
+
+        blob = file.slice(100000, 900000, file.type);
+        reader.readAsArrayBuffer(blob);
+
+    	});
+
+    </script>
+
+  </body>
+<html>
