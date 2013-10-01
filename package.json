@@ -1,0 +1,17 @@
+{
+  "name": "zed",
+  "version": "0.0.1",
+  "author": {
+        "name": "Bruno Coelho",
+        "email": "bcs.cin@gmail.com"
+    },
+  "author": {
+        "name": "Rodrigo alves",
+        "email": "rodrigovieira1994@gmail.com"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "jasmine-node": "~1.11.0",
+    "jslint": "~0.1.9"
+  }
+}
