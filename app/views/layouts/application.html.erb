@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Zed</title>
-  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Zed</title>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class="zed-home">
 
-<%= yield %>
+    <main class="bs-masthead" id="content" role="main">
+      <div class="container">
+        <h1>Zed</h1>
+        <p class="lead">Crop your media files</p>
 
-    <p>
-      Choose the audio file
-      <input type="file"></input>
-    </p>
+        <%= yield %>
 
-    <audio controls>
-      <p>Your browser does not support the audio element.</p>
-    </audio>
+        <p>
+          Choose the audio file
+          <input type="file"></input>
+        </p>
 
-    <audio id="sliced-audio" controls>
-    </audio>
+        <audio controls>
+          <p>Your browser does not support the audio element.</p>
+        </audio>
 
-    <a href="">Download</a>
+        <audio id="sliced-audio" controls>
+        </audio>
 
-</body>
+        <p>
+          <%= link_to "Download", "#", class: "btn btn-outline-inverse btn-lg" %>
+        </p>
+        </div>
+    </main>
+
+    <%= render "layouts/footer" %>
+  </body>
 </html>
